@@ -1,9 +1,11 @@
 import re
 import scrapy
 
+from collections import OrderedDict
+
 from bs4 import BeautifulSoup
 
-class docsspider(scrapy.Spider):
+class DocsSpider(scrapy.Spider):
 
     name = 'docs'
     start_urls = ['https://docs.python.org/3/']
@@ -19,7 +21,16 @@ class docsspider(scrapy.Spider):
         data = soup.get_text().lower()
         words = self.precompiler_words.findall(data)
 
-        yield {response.url: words}
+        yield {
+            'title': response.css('title::text').extract_first(),
+            'url': response.url,
+            'words': words
+        }
+
+        # Output in order, but failed
+        # yield OrderedDict(title = response.css('title::text').extract_first(),
+        #                   url = response.url,
+        #                   words =  words)
 
         next_pages = response.css('body div.body a::attr(href)').extract()
         if len(next_pages) != 0:
