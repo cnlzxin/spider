@@ -1,9 +1,13 @@
-爬虫: 爬取英文官方文档, 统计其中英语单词出现的频率, 并按降序排列, 这里以Python的文档为样本, 希望能成为英语学习者的好帮手
+# 概述
 
+爬虫: 爬取英文官方文档, 统计其中英语单词出现的频率, 并按降序排列, 用于英语学习
+
+
+# 使用
 
 下载: 
 ```bash
-$ git clone https://github.com/lzxin1/spider.git
+$ git clone https://github.com/cnlzxin/spider.git
 ```
 
 运行:
@@ -18,8 +22,9 @@ $ python3 docs2dict.py	# 在同目录下生成 dict_.json 文件
 ```
 
 
-## TO DO
+## TODO
 
+- 对 [Golang 官方文档](https://golang.org/doc/) 进行统计
 - 可以爬取任意英文网站文档
 - 数据获取和处理一步到位
 - 使用Web展示(`Django`)
